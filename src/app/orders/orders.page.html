@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title slot="start">Search Orders</ion-title>
+    <ion-button slot="primary" color="secondary" padding-end (click)="logoutUser()">Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid margin-top>
+    <ion-row size="12">
+      <ion-searchbar
+        placeholder="Product Id or description"
+        (ionInput)="getInputQuery($event)"
+      ></ion-searchbar>
+    </ion-row>
+    <ion-row size="12">
+      
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="isItemAvailable">
+      <ion-col size="12" *ngFor="let item of items">
+        <ion-card color="secondary" [routerLink]="['./', item.orderID]">
+          <ion-card-header>Customer ID {{ item.customerID }}</ion-card-header>
+          <ion-card-content>
+            Customer Name: {{ item.name }} <br />
+            Order ID: {{ item.orderID }} <br />
+            Address: {{ item.address }} <br />
+            Description: {{ item.description }} <br />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div text-center>
+      <ion-button (click)="scanCode()">
+          Scan QR Code
+        </ion-button>
+  </div>
+  
+</ion-content>
